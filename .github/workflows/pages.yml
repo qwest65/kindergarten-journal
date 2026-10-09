@@ -3,6 +3,8 @@ name: Deploy static site to GitHub Pages
 on:
   push:
     branches: ["main"]
+    # auth/users.json меняется самим сайтом (пароли) — перепубликация не нужна
+    paths-ignore: ["auth/**"]
   workflow_dispatch:
 
 permissions:
