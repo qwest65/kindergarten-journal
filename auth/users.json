@@ -1,0 +1,12 @@
+{
+ "version": 1,
+ "users": {
+  "cb760306bd981e06dca08b43bb9a711ae6f232a9d868db118914deab103a984e": {
+   "it": 600000,
+   "salt": "jSNS38iNZVp9Q0UyPvldNw==",
+   "iv": "IIUejm2wiTHzMNNK",
+   "ct": "48FhqRNG7nVURomgDjvP2UHewMScUj18ePOzCJjIzY6bGblgXCKlR/YZ3fIRmxkYRsl4MDV1IzqDchcxYNgvo9kGpo39NCnUya43yYkZED4mL4GOAsyYxAOp5himk2NHenaU6NUNfBG91qyaTi+MwIm0pRSxON0rB4BUSbV7hrwd8176U8CIX19h6HOfUwmM9k7oNydocq+E+dLii6cIRBAaJyABhgDQ1XVvJIBvRQmF4g=="
+  }
+ },
+ "dataRepo": "qwest65/kindergarten-journal-data"
+}
