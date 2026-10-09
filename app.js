@@ -28,7 +28,7 @@ const STATUSES = [
 ];
 const ST = Object.fromEntries(STATUSES.map(s => [s.k, s]));
 const LESSON_STATUS = { done: 'Проведено', planned: 'Запланировано', cancelled: 'Отменено' };
-const ROLE = { admin: 'Заведующая', teacher: 'Воспитатель' };
+const ROLE = { admin: 'Администратор', head: 'Заведующая', teacher: 'Воспитатель' };
 
 /* ================= Утилиты ================= */
 
@@ -189,7 +189,7 @@ class GitHub {
 
 function humanError(e) {
   if (!e) return 'Неизвестная ошибка';
-  if (e.status === 401) return 'Ключ доступа GitHub недействителен или истёк. Обратитесь к заведующей.';
+  if (e.status === 401) return 'Ключ доступа GitHub недействителен или истёк. Обратитесь к администратору.';
   if (e.status === 403) return 'GitHub отказал в доступе (нет прав или превышен лимит запросов). ' + (e.message || '');
   if (e.status === 404) return 'Не найдено на GitHub. Проверьте название репозитория и права ключа доступа.';
   return e.message || String(e);
@@ -207,14 +207,16 @@ const S = {
   adminTab: 'children',
 };
 
+/* admin — всё, включая сотрудников и ключ; head (заведующая) — все группы, дети, журнал действий; teacher — свои группы. */
 const isAdmin = () => S.me && S.me.role === 'admin';
+const isManager = () => S.me && (S.me.role === 'admin' || S.me.role === 'head');
 const groupById = id => S.groups.find(g => g.id === id);
 const groupName = id => (groupById(id) || {}).name || '—';
 const childById = id => S.children.find(c => c.id === id);
 const userName = id => (S.users.find(u => u.id === id) || {}).name || '—';
 function myGroups(includeArchived) {
   const list = S.groups.filter(g => includeArchived || !g.archived);
-  return (isAdmin() ? list : list.filter(g => (S.me.groups || []).includes(g.id))).slice().sort(byName);
+  return (isManager() ? list : list.filter(g => (S.me.groups || []).includes(g.id))).slice().sort(byName);
 }
 const groupKids = gid => S.children.filter(c => c.groupId === gid && !c.archived).sort(byName);
 const monthPath = (kind, ym) => `data/${kind}/${ym}.json`;
@@ -512,7 +514,7 @@ async function startSession(token, dataRepo, userId, remember) {
   await loadCore();
   const me = S.users.find(u => u.id === userId);
   if (!me || me.active === false) {
-    const err = new Error('Учётная запись отключена. Обратитесь к заведующей.');
+    const err = new Error('Учётная запись отключена. Обратитесь к администратору.');
     err.status = 'disabled'; throw err;
   }
   S.me = me;
@@ -556,9 +558,9 @@ $('#setupBack').onclick = () => { show('login'); };
 let setupRecovery = false;
 function openSetup(recovery) {
   setupRecovery = recovery;
-  $('#setupTitle').textContent = recovery ? 'Восстановление доступа заведующей' : 'Первоначальная настройка';
+  $('#setupTitle').textContent = recovery ? 'Восстановление доступа администратора' : 'Первоначальная настройка';
   $('#setupHint').textContent = recovery
-    ? 'Если заведующая забыла пароль: введите ключ доступа GitHub и логин заведующей, затем задайте новый пароль. Пароли остальных сотрудников не изменятся.'
+    ? 'Если администратор забыл пароль: введите ключ доступа GitHub и логин администратора, затем задайте новый пароль. Пароли остальных сотрудников не изменятся.'
     : 'Выполняется один раз. Нужен ключ доступа GitHub (токен) с правом записи в оба репозитория — сайта и данных.';
   $('#setupNameField').classList.toggle('hidden', recovery);
   $('#setupBack').classList.toggle('hidden', !recovery);
@@ -573,7 +575,7 @@ $('#setupForm').addEventListener('submit', async e => {
   err.textContent = '';
   const repo = $('#setupRepo').value.trim().replace(/^https?:\/\/github\.com\//, '').replace(/\/+$/, '').replace(/\.git$/, '');
   const token = $('#setupToken').value.trim();
-  const name = $('#setupName').value.trim() || 'Заведующая';
+  const name = $('#setupName').value.trim() || 'Администратор';
   const login = normLogin($('#setupLogin').value);
   const pass = $('#setupPass').value, pass2 = $('#setupPass2').value;
   if (!/^[\w.-]+\/[\w.-]+$/.test(repo)) { err.textContent = 'Укажите репозиторий в виде владелец/название.'; return; }
@@ -597,10 +599,10 @@ $('#setupForm').addEventListener('submit', async e => {
     let me;
     if (existing && existing.data && existing.data.users && existing.data.users.length) {
       me = existing.data.users.find(u => normLogin(u.login) === login && u.role === 'admin' && u.active !== false);
-      if (!me) throw new Error('В данных уже есть сотрудники, но заведующей с таким логином нет. Укажите существующий логин заведующей.');
+      if (!me) throw new Error('В данных уже есть сотрудники, но администратора с таким логином нет. Укажите существующий логин администратора.');
       S.users = existing.data.users;
       S.me = me;
-      await gh.commit(repo, CONFIG.dataBranch, `${me.name}: восстановление доступа`, [logChange('auth', 'Восстановлен доступ заведующей через ключ GitHub')]);
+      await gh.commit(repo, CONFIG.dataBranch, `${me.name}: восстановление доступа`, [logChange('auth', 'Восстановлен доступ администратора через ключ GitHub')]);
     } else {
       if (setupRecovery) throw new Error('В репозитории данных ещё нет сотрудников — выполните первоначальную настройку.');
       me = { id: uid(), login, name, role: 'admin', groups: [], active: true, createdAt: nowIso() };
@@ -642,8 +644,8 @@ const VIEWS = [
   { id: 'tabel', title: 'Табель' },
   { id: 'lessons', title: 'Занятия' },
   { id: 'stats', title: 'Статистика' },
-  { id: 'log', title: 'Журнал действий', admin: true },
-  { id: 'admin', title: 'Управление', admin: true },
+  { id: 'log', title: 'Журнал действий', manager: true },
+  { id: 'admin', title: 'Управление', manager: true },
 ];
 
 function enterApp() {
@@ -653,7 +655,7 @@ function enterApp() {
   go(S.view);
 }
 function renderTabs() {
-  $('#tabs').innerHTML = VIEWS.filter(v => !v.admin || isAdmin())
+  $('#tabs').innerHTML = VIEWS.filter(v => !v.manager || isManager())
     .map(v => `<button type="button" data-view="${v.id}" class="${v.id === S.view ? 'active' : ''}">${v.title}</button>`).join('');
 }
 $('#tabs').addEventListener('click', e => {
@@ -662,7 +664,7 @@ $('#tabs').addEventListener('click', e => {
 });
 async function go(view) {
   if (S.view === 'mark' && view !== 'mark' && markDirty() && !window.confirm('Отметки не сохранены. Уйти без сохранения?')) return;
-  const v = VIEWS.find(x => x.id === view && (!x.admin || isAdmin())) ? view : 'mark';
+  const v = VIEWS.find(x => x.id === view && (!x.manager || isManager())) ? view : 'mark';
   S.view = v;
   renderTabs();
   $('#savebarRoot') && $('#savebarRoot').remove();
@@ -758,7 +760,7 @@ function markDirty() {
 async function renderMark(force) {
   const groups = myGroups();
   if (!groups.length) {
-    setView(`<div class="panel"><div class="empty">${isAdmin() ? 'Групп пока нет. Создайте группу и добавьте детей в разделе «Управление».' : 'Вам пока не назначены группы. Обратитесь к заведующей.'}</div></div>`);
+    setView(`<div class="panel"><div class="empty">${isManager() ? 'Групп пока нет. Создайте группу и добавьте детей в разделе «Управление».' : 'Вам пока не назначены группы. Обратитесь к заведующей.'}</div></div>`);
     return;
   }
   const m = S.mark;
@@ -796,7 +798,7 @@ async function renderMark(force) {
         <button class="btn small" type="button" data-act="mReset">Отменить изменения</button>
       </div>
       ${kids.length ? `<div class="att-list" id="mList">${kids.map(markRowHtml).join('')}</div>`
-        : `<div class="empty">В группе нет детей.${isAdmin() ? ' Добавьте их в разделе «Управление».' : ''}</div>`}
+        : `<div class="empty">В группе нет детей.${isManager() ? ' Добавьте их в разделе «Управление».' : ''}</div>`}
     </div>`);
   const bar = document.createElement('div');
   bar.id = 'savebarRoot';
@@ -1205,7 +1207,8 @@ ACTIONS.exportLog = async () => {
 /* ================= Управление ================= */
 
 function renderAdmin() {
-  const tabs = [['children', 'Дети'], ['groups', 'Группы'], ['users', 'Сотрудники'], ['key', 'Ключ GitHub']];
+  const tabs = [['children', 'Дети'], ['groups', 'Группы']].concat(isAdmin() ? [['users', 'Сотрудники'], ['key', 'Ключ GitHub']] : []);
+  if (!tabs.some(t => t[0] === S.adminTab)) S.adminTab = 'children';
   let html = `<div class="subtabs">${tabs.map(([k, t]) => `<button type="button" data-act="adminTab" data-tab="${k}" class="${S.adminTab === k ? 'active' : ''}">${t}</button>`).join('')}</div>`;
   if (S.adminTab === 'children') html += adminChildren();
   else if (S.adminTab === 'groups') html += adminGroups();
@@ -1340,7 +1343,7 @@ function adminUsers() {
       <button class="btn primary" data-act="addUser">＋ Сотрудник</button></div>
     ${table([th('Имя'), th('Логин'), th('Роль'), th('Группы'), th('Статус'), th('')], list.map(u => `<tr>
       <td><b>${esc(u.name)}</b>${u.id === S.me.id ? ' <span class="muted">(вы)</span>' : ''}</td><td>${esc(u.login)}</td><td>${ROLE[u.role] || u.role}</td>
-      <td>${u.role === 'admin' ? 'все' : esc((u.groups || []).map(groupName).join(', ') || '—')}</td>
+      <td>${u.role !== 'teacher' ? 'все' : esc((u.groups || []).map(groupName).join(', ') || '—')}</td>
       <td>${u.active === false ? '<span class="badge red">Отключён</span>' : '<span class="badge green">Активен</span>'}</td>
       <td class="nowrap"><button class="btn small" data-act="editUser" data-id="${esc(u.id)}">Изменить</button>
         ${u.active !== false && u.id !== S.me.id ? `<button class="btn small" data-act="resetPass" data-id="${esc(u.id)}">Новый пароль</button>` : ''}</td></tr>`), 'Сотрудников нет')}
@@ -1408,8 +1411,8 @@ function userModal(id) {
         return false;
       }
       const active = self ? true : !!(f.elements.active && f.elements.active.checked);
-      if (!active && old.role === 'admin' && S.users.filter(x => x.role === 'admin' && x.active !== false).length < 2) throw new Error('Нельзя отключить единственную заведующую.');
-      if (role !== 'admin' && old.role === 'admin' && S.users.filter(x => x.role === 'admin' && x.active !== false).length < 2) throw new Error('Должна остаться хотя бы одна заведующая.');
+      if (!active && old.role === 'admin' && S.users.filter(x => x.role === 'admin' && x.active !== false).length < 2) throw new Error('Нельзя отключить единственного администратора.');
+      if (role !== 'admin' && old.role === 'admin' && S.users.filter(x => x.role === 'admin' && x.active !== false).length < 2) throw new Error('Должен остаться хотя бы один администратор.');
       const patch = { name, role, groups: role === 'teacher' ? gs : [], active };
       const notes = [];
       if (old.name !== name) notes.push(`имя → ${name}`);
