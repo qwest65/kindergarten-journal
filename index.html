@@ -21,7 +21,7 @@
     <label class="check"><input type="checkbox" id="loginRemember"> Запомнить на этом устройстве</label>
     <div class="form-error" id="loginError"></div>
     <button class="btn primary block" type="submit" id="loginBtn">Войти</button>
-    <button class="link-btn" type="button" id="recoverLink">Восстановить доступ заведующей</button>
+    <button class="link-btn" type="button" id="recoverLink">Восстановить доступ администратора</button>
   </form>
 </div>
 
@@ -31,8 +31,8 @@
     <p class="hint" id="setupHint">Выполняется один раз. Нужен ключ доступа GitHub (токен) с правом записи в оба репозитория — сайта и данных.</p>
     <div class="field"><label for="setupRepo">Приватный репозиторий с данными</label><input id="setupRepo" required spellcheck="false"></div>
     <div class="field"><label for="setupToken">Ключ доступа GitHub (токен)</label><input id="setupToken" type="password" required spellcheck="false" placeholder="github_pat_…"></div>
-    <div class="field" id="setupNameField"><label for="setupName">Ваше имя (как будет в журнале)</label><input id="setupName" placeholder="Например, Заведующая Иванова И.И."></div>
-    <div class="field"><label for="setupLogin">Логин заведующей</label><input id="setupLogin" required autocapitalize="none" spellcheck="false" placeholder="например, admin"></div>
+    <div class="field" id="setupNameField"><label for="setupName">Ваше имя (как будет в журнале)</label><input id="setupName" placeholder="Например, Администратор"></div>
+    <div class="field"><label for="setupLogin">Логин администратора</label><input id="setupLogin" required autocapitalize="none" spellcheck="false" placeholder="например, admin"></div>
     <div class="field"><label for="setupPass">Новый пароль (не короче 10 символов)</label><input id="setupPass" type="password" required minlength="10" autocomplete="new-password"></div>
     <div class="field"><label for="setupPass2">Пароль ещё раз</label><input id="setupPass2" type="password" required minlength="10" autocomplete="new-password"></div>
     <div class="form-error" id="setupError"></div>
