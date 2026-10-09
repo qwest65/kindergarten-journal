@@ -3,104 +3,59 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#f6f7fb">
+<meta name="theme-color" content="#f5f7fb">
+<meta name="robots" content="noindex,nofollow">
 <title>Журнал детского сада</title>
-<style>
-:root{--bg:#f5f7fb;--panel:#fff;--ink:#202b3c;--muted:#738096;--line:#e4e9f1;--blue:#3768d8;--blue-light:#edf2ff;--green:#16845b;--amber:#a7660a;--red:#b83c4b;--shadow:0 8px 24px #263b5b0a}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}.app{display:grid;grid-template-columns:240px minmax(0,1fr);min-height:100vh}.sidebar{background:#fff;border-right:1px solid var(--line);padding:24px 14px;display:flex;flex-direction:column;gap:26px}.brand{display:flex;align-items:center;gap:11px;padding:0 8px}.brand-mark{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:var(--blue-light);color:var(--blue);font-size:20px}.brand strong{display:block;font-size:15px}.brand small{color:var(--muted)}.nav{display:grid;gap:5px}.nav button{border:0;background:transparent;color:#647187;text-align:left;padding:11px 12px;border-radius:10px;display:flex;gap:11px;align-items:center}.nav button.active,.nav button:hover{background:var(--blue-light);color:var(--blue)}.nav .ico{width:20px;text-align:center;font-size:16px}.side-note{margin-top:auto;padding:12px;color:var(--muted);font-size:12px;background:#f8f9fc;border-radius:10px}.main{padding:28px clamp(16px,3vw,42px);min-width:0}.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:25px}.eyebrow{color:var(--muted);font-size:12px;margin-bottom:4px}.topbar h1{font-size:27px;letter-spacing:-.7px;margin:0}.date-label{color:var(--muted);white-space:nowrap}.actions{display:flex;gap:8px;flex-wrap:wrap}.btn{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:9px;padding:9px 13px;font-weight:600}.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}.btn.small{padding:6px 9px;font-size:12px}.btn.danger{color:var(--red)}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:22px}.stat,.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}.stat{padding:17px 18px}.stat .label{color:var(--muted);font-size:12px}.stat .value{font-size:27px;font-weight:750;letter-spacing:-.7px;margin:7px 0 3px}.stat .sub{font-size:12px;color:var(--muted)}.panel{padding:19px;margin-bottom:18px}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:15px}.panel h2{font-size:16px;margin:0}.panel p.hint{color:var(--muted);font-size:12px;margin:4px 0 0}.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:14px}.field{display:grid;gap:5px;min-width:0}.field label{font-size:12px;color:var(--muted)}input,select,textarea{width:100%;border:1px solid #dbe2ec;border-radius:8px;padding:9px 10px;background:#fff;color:var(--ink);min-width:0}input:focus,select:focus,textarea:focus{outline:2px solid #cbd8ff;border-color:var(--blue)}.toolbar .field{min-width:145px}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:10px}table{border-collapse:collapse;width:100%;white-space:nowrap}th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line)}th{background:#f8f9fc;color:var(--muted);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.35px}td{font-size:13px}tr:last-child td{border-bottom:0}.badge{display:inline-flex;align-items:center;border-radius:20px;padding:4px 8px;font-size:11px;font-weight:700;background:#eef1f6;color:#657186}.badge.done,.badge.present{background:#e5f6ed;color:var(--green)}.badge.planned{background:#fff3db;color:var(--amber)}.badge.cancelled,.badge.absent{background:#ffeaed;color:var(--red)}.empty{text-align:center;color:var(--muted);padding:30px}.hidden{display:none!important}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.form-grid .wide{grid-column:1/-1}.modal-backdrop{position:fixed;inset:0;background:#18233880;display:grid;place-items:center;padding:18px;z-index:5}.modal{background:#fff;border-radius:15px;padding:22px;width:min(540px,100%);max-height:90vh;overflow:auto;box-shadow:0 24px 80px #0003}.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.modal-head h2{margin:0;font-size:18px}.modal-foot{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}.toast{position:fixed;bottom:20px;right:20px;background:#202b3c;color:#fff;padding:12px 16px;border-radius:10px;box-shadow:var(--shadow);z-index:10}.progress{height:7px;background:#edf0f5;border-radius:8px;overflow:hidden}.progress span{display:block;height:100%;background:var(--blue);border-radius:8px}.notice{padding:12px 14px;border-radius:10px;background:#fff6e4;color:#80520c;font-size:12px;margin-bottom:18px}.mobile-menu{display:none}
-@media(max-width:900px){.app{grid-template-columns:1fr}.sidebar{padding:12px 14px;border-right:0;border-bottom:1px solid var(--line);gap:12px}.brand{padding:0}.nav{display:flex;overflow:auto}.nav button{white-space:nowrap;padding:9px 11px}.side-note{display:none}.main{padding:22px 15px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.topbar h1{font-size:23px}.date-label{display:none}}
-@media(max-width:480px){.stats{gap:9px}.stat{padding:13px}.stat .value{font-size:23px}.panel{padding:13px}.form-grid{grid-template-columns:1fr}.form-grid .wide{grid-column:auto}.topbar{align-items:flex-start}.topbar .actions{justify-content:flex-end}.topbar .btn{padding:8px 10px}}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="app">
-<aside class="sidebar">
-  <div class="brand"><div class="brand-mark">▦</div><div><strong>Детский сад</strong><small>Электронный журнал</small></div></div>
-  <nav class="nav" id="nav">
-    <button class="active" data-view="overview"><span class="ico">▦</span>Обзор</button>
-    <button data-view="lessons"><span class="ico">▤</span>Журнал занятий</button>
-    <button data-view="attendance"><span class="ico">✓</span>Посещаемость</button>
-    <button data-view="children"><span class="ico">♧</span>Воспитанники</button>
-    <button data-view="reports"><span class="ico">▥</span>Отчёты и экспорт</button>
-  </nav>
-  <div class="side-note">Демонстрационный режим<br>Данные сохраняются только в этом браузере.</div>
-</aside>
-<main class="main">
-  <header class="topbar"><div><div class="eyebrow">РАБОЧЕЕ ПРОСТРАНСТВО / ДЕТСКИЙ САД</div><h1 id="pageTitle">Обзор</h1></div><div class="actions"><span class="date-label" id="todayLabel"></span><button class="btn primary" id="quickAdd">＋ Добавить занятие</button></div></header>
-  <div class="notice"><strong>Важно:</strong> это первый прототип. Используются только вымышленные данные и локальное хранилище браузера. Между сотрудниками данные пока не синхронизируются. Не вводите реальные ФИО.</div>
-  <section id="view-overview">
-    <div class="stats">
-      <div class="stat"><div class="label">Занятий в журнале</div><div class="value" id="statLessons">0</div><div class="sub">за выбранный период</div></div>
-      <div class="stat"><div class="label">Проведено</div><div class="value" id="statDone">0</div><div class="sub">отмечено педагогом</div></div>
-      <div class="stat"><div class="label">Воспитанников</div><div class="value" id="statChildren">0</div><div class="sub">в демонстрационных группах</div></div>
-      <div class="stat"><div class="label">Посещаемость</div><div class="value" id="statAttendance">—</div><div class="sub">по отмеченным посещениям</div></div>
-    </div>
-    <div class="panel"><div class="panel-head"><div><h2>Ближайшие занятия</h2><p class="hint">Запланированные и проведённые занятия</p></div><button class="btn small" data-goto="lessons">Весь журнал →</button></div><div id="upcomingTable"></div></div>
-    <div class="panel"><div class="panel-head"><div><h2>Посещаемость по группам</h2><p class="hint">Доля отметок «Присутствовал» среди всех отметок</p></div></div><div id="groupStats"></div></div>
-  </section>
-  <section id="view-lessons" class="hidden"><div class="panel"><div class="panel-head"><div><h2>Журнал занятий</h2><p class="hint">План, факт и статус проведения</p></div><button class="btn primary" id="addLesson">＋ Новое занятие</button></div><div class="toolbar"><div class="field"><label for="lessonGroupFilter">Группа</label><select id="lessonGroupFilter"><option value="">Все группы</option></select></div><div class="field"><label for="lessonDateFilter">Дата</label><input id="lessonDateFilter" type="month"></div><div class="field"><label for="lessonStatusFilter">Статус</label><select id="lessonStatusFilter"><option value="">Все статусы</option><option value="planned">Запланировано</option><option value="done">Проведено</option><option value="cancelled">Отменено</option></select></div></div><div id="lessonsTable"></div></div></section>
-  <section id="view-attendance" class="hidden"><div class="panel"><div class="panel-head"><div><h2>Посещаемость</h2><p class="hint">Выберите занятие, затем отметьте присутствие воспитанников</p></div></div><div class="toolbar"><div class="field" style="flex:1;min-width:220px"><label for="attendanceLesson">Занятие</label><select id="attendanceLesson"></select></div></div><div id="attendanceEditor"></div></div></section>
-  <section id="view-children" class="hidden"><div class="panel"><div class="panel-head"><div><h2>Воспитанники</h2><p class="hint">Тестовый справочник; можно добавлять и удалять записи</p></div><button class="btn primary" id="addChild">＋ Добавить воспитанника</button></div><div class="toolbar"><div class="field"><label for="childGroupFilter">Группа</label><select id="childGroupFilter"><option value="">Все группы</option></select></div><div class="field" style="flex:1"><label for="childSearch">Поиск по номеру</label><input id="childSearch" placeholder="Введите номер ребёнка"></div></div><div id="childrenTable"></div></div></section>
-  <section id="view-reports" class="hidden"><div class="panel"><div class="panel-head"><div><h2>Отчёты и экспорт</h2><p class="hint">Сформируйте таблицы для Excel</p></div></div><div class="form-grid"><div class="field"><label for="reportFrom">С даты</label><input type="date" id="reportFrom"></div><div class="field"><label for="reportTo">По дату</label><input type="date" id="reportTo"></div><div class="field"><label for="reportGroup">Группа</label><select id="reportGroup"><option value="">Все группы</option></select></div><div class="field"><label for="reportType">Данные</label><select id="reportType"><option value="lessons">Журнал занятий</option><option value="attendance">Посещаемость по детям</option><option value="summary">Сводка по группам</option></select></div></div><div class="actions" style="margin-top:16px"><button class="btn primary" id="exportReport">⇩ Скачать CSV для Excel</button><button class="btn" id="previewReport">Показать предварительный просмотр</button></div><div id="reportPreview" style="margin-top:18px"></div></div></section>
-</main>
+<noscript>Для работы журнала нужен включённый JavaScript.</noscript>
+
+<div id="screen-loading" class="center-screen"><div class="spinner"></div><p>Загрузка…</p></div>
+
+<div id="screen-login" class="center-screen hidden">
+  <form class="card auth-card" id="loginForm" autocomplete="on">
+    <div class="brand-big"><span class="brand-mark">✿</span><div><strong>Детский сад</strong><small>Электронный журнал</small></div></div>
+    <div class="field"><label for="loginName">Логин</label><input id="loginName" name="username" autocomplete="username" required autocapitalize="none" spellcheck="false"></div>
+    <div class="field"><label for="loginPass">Пароль</label><input id="loginPass" name="password" type="password" autocomplete="current-password" required></div>
+    <label class="check"><input type="checkbox" id="loginRemember"> Запомнить на этом устройстве</label>
+    <div class="form-error" id="loginError"></div>
+    <button class="btn primary block" type="submit" id="loginBtn">Войти</button>
+    <button class="link-btn" type="button" id="recoverLink">Восстановить доступ заведующей</button>
+  </form>
 </div>
-<div id="modalRoot"></div><div id="toastRoot"></div>
-<script>
-(function(){
-const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
-const today=new Date(); const iso=d=>{const x=new Date(d);return x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0')};
-const dateToday=iso(today); $('#todayLabel').textContent=today.toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'});
-const demo={
- groups:[{id:'g1',name:'Младшая группа'},{id:'g2',name:'Средняя группа'},{id:'g3',name:'Старшая группа'}],
- children:[
- {id:'c1',name:'Ребёнок 1',groupId:'g1'},{id:'c2',name:'Ребёнок 2',groupId:'g1'},{id:'c3',name:'Ребёнок 3',groupId:'g1'},
- {id:'c4',name:'Ребёнок 4',groupId:'g2'},{id:'c5',name:'Ребёнок 5',groupId:'g2'},{id:'c6',name:'Ребёнок 6',groupId:'g2'},
- {id:'c7',name:'Ребёнок 7',groupId:'g3'},{id:'c8',name:'Ребёнок 8',groupId:'g3'}],
- lessons:[
- {id:'l1',date:dateToday,groupId:'g2',title:'Развитие речи',teacher:'Педагог 1',planned:20,actual:20,status:'done'},
- {id:'l2',date:dateToday,groupId:'g1',title:'Музыкальное занятие',teacher:'Педагог 2',planned:15,actual:15,status:'planned'},
- {id:'l3',date:iso(new Date(today.getTime()-86400000)),groupId:'g3',title:'Физическая культура',teacher:'Педагог 3',planned:25,actual:25,status:'done'},
- {id:'l4',date:iso(new Date(today.getTime()-2*86400000)),groupId:'g2',title:'Лепка',teacher:'Педагог 1',planned:20,actual:0,status:'done'}],
- attendance:{l1:{c4:'present',c5:'present',c6:'absent'},l3:{c7:'present',c8:'present'},l4:{c4:'present',c5:'absent',c6:'present'}}
-};
-let data; try{data=JSON.parse(localStorage.getItem('kj-prototype-data'))||demo; if(!data.groups||!data.children||!data.lessons) data=demo;}catch(e){data=demo}
-function save(){localStorage.setItem('kj-prototype-data',JSON.stringify(data));render();toast('Изменения сохранены в этом браузере')}
-function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function groupName(id){return data.groups.find(g=>g.id===id)?.name||'—'}
-function statusLabel(s){return ({planned:'Запланировано',done:'Проведено',cancelled:'Отменено'})[s]||s}
-function statusBadge(s){return '<span class="badge '+esc(s)+'">'+esc(statusLabel(s))+'</span>'}
-function fmtDate(d){if(!d)return '—';return new Date(d+'T12:00:00').toLocaleDateString('ru-RU',{day:'2-digit',month:'2-digit',year:'numeric'})}
-function table(headers,rows,empty){if(!rows.length)return '<div class="empty">'+(empty||'Нет записей')+'</div>';return '<div class="table-wrap"><table><thead><tr>'+headers.map(h=>'<th>'+h+'</th>').join('')+'</tr></thead><tbody>'+rows.join('')+'</tbody></table></div>'}
-function lessonRows(list,actions){return list.slice().sort((a,b)=>b.date.localeCompare(a.date)).map(l=>'<tr><td>'+fmtDate(l.date)+'</td><td><strong>'+esc(l.title)+'</strong><br><span style="color:var(--muted)">'+esc(l.teacher||'—')+'</span></td><td>'+esc(groupName(l.groupId))+'</td><td>'+esc(l.planned)+' мин.</td><td>'+statusBadge(l.status)+'</td><td><button class="btn small" data-att="'+l.id+'">Посещаемость</button> <button class="btn small" data-editlesson="'+l.id+'">Изменить</button> '+(actions?'<button class="btn small danger" data-dellesson="'+l.id+'">Удалить</button>':'')+'</td></tr>')}
-function renderOverview(){
- $('#statLessons').textContent=data.lessons.length;$('#statDone').textContent=data.lessons.filter(l=>l.status==='done').length;$('#statChildren').textContent=data.children.length;
- const marks=Object.values(data.attendance).flatMap(o=>Object.values(o));const present=marks.filter(x=>x==='present').length;$('#statAttendance').textContent=marks.length?Math.round(present/marks.length*100)+'%':'—';
- $('#upcomingTable').innerHTML=table(['Дата / занятие','Группа','Длительность','Статус','Действия'],lessonRows(data.lessons.filter(l=>l.date>=iso(new Date(today.getTime()-7*86400000))).slice(0,6)).map(r=>r.replace(/<td>.*?<\/td>/,'<td>'+r.match(/<td>(.*?)<\/td>/)?.[1]+'</td>')), 'Пока нет занятий');
- $('#groupStats').innerHTML=data.groups.map(g=>{const ids=data.children.filter(c=>c.groupId===g.id).map(c=>c.id);let all=0,yes=0;Object.values(data.attendance).forEach(o=>ids.forEach(id=>{if(o[id]){all++;if(o[id]==='present')yes++}}));const pct=all?Math.round(yes/all*100):0;return '<div style="margin:14px 0"><div style="display:flex;justify-content:space-between;margin-bottom:6px"><strong>'+esc(g.name)+'</strong><span style="color:var(--muted)">'+(all?pct+'%':'Нет отметок')+'</span></div><div class="progress"><span style="width:'+pct+'%"></span></div></div>'}).join('');
-}
-function renderLessons(){const group=$('#lessonGroupFilter').value,month=$('#lessonDateFilter').value,status=$('#lessonStatusFilter').value;let list=data.lessons.filter(l=>(!group||l.groupId===group)&&(!month||l.date.startsWith(month))&&(!status||l.status===status));$('#lessonsTable').innerHTML=table(['Дата / занятие','Группа','План','Статус','Действия'],lessonRows(list,true),'Нет занятий по выбранным фильтрам')}
-function renderChildren(){const group=$('#childGroupFilter').value,q=$('#childSearch').value.toLocaleLowerCase('ru');const list=data.children.filter(c=>(!group||c.groupId===group)&&c.name.toLocaleLowerCase('ru').includes(q));$('#childrenTable').innerHTML=table(['ФИО','Группа','Действия'],list.map(c=>'<tr><td>'+esc(c.name)+'</td><td>'+esc(groupName(c.groupId))+'</td><td><button class="btn small" data-editchild="'+c.id+'">Изменить</button> <button class="btn small danger" data-delchild="'+c.id+'">Удалить</button></td></tr>'),'Список пуст')}
-function renderAttendance(){const sel=$('#attendanceLesson'),old=sel.value;sel.innerHTML=data.lessons.slice().sort((a,b)=>b.date.localeCompare(a.date)).map(l=>'<option value="'+l.id+'">'+fmtDate(l.date)+' — '+esc(l.title)+' ('+esc(groupName(l.groupId))+')</option>').join('');if(data.lessons.some(l=>l.id===old))sel.value=old;const l=data.lessons.find(l=>l.id===sel.value);if(!l){$('#attendanceEditor').innerHTML='<div class="empty">Сначала добавьте занятие</div>';return}data.attendance[l.id]=data.attendance[l.id]||{};const kids=data.children.filter(c=>c.groupId===l.groupId);$('#attendanceEditor').innerHTML='<div style="margin-bottom:12px;color:var(--muted)">'+esc(groupName(l.groupId))+' · '+fmtDate(l.date)+' · '+esc(l.title)+'</div>'+table(['Воспитанник','Посещаемость'],kids.map(c=>{const v=data.attendance[l.id][c.id]||'';return '<tr><td>'+esc(c.name)+'</td><td><select data-mark="'+c.id+'" aria-label="Посещаемость '+esc(c.name)+'"><option value="">Не отмечено</option><option value="present" '+(v==='present'?'selected':'')+'>Присутствовал</option><option value="absent" '+(v==='absent'?'selected':'')+'>Отсутствовал</option></select></td></tr>'}),'В группе пока нет воспитанников')+'<div class="actions" style="margin-top:14px"><button class="btn primary" id="saveAttendance">Сохранить посещаемость</button><button class="btn" id="markAllPresent">Отметить всех присутствующими</button></div>'}
-function fillSelects(){const opts=data.groups.map(g=>'<option value="'+g.id+'">'+esc(g.name)+'</option>').join('');['lessonGroupFilter','childGroupFilter','reportGroup'].forEach(id=>{const el=$('#'+id),v=el.value;el.innerHTML='<option value="">Все группы</option>'+opts;el.value=v});}
-function render(){fillSelects();renderOverview();renderLessons();renderChildren();renderAttendance();renderReportPreviewIfVisible()}
-const titles={overview:'Обзор',lessons:'Журнал занятий',attendance:'Посещаемость',children:'Воспитанники',reports:'Отчёты и экспорт'};
-function go(view){$$('[id^="view-"]').forEach(s=>s.classList.toggle('hidden',s.id!=='view-'+view));$$('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===view));$('#pageTitle').textContent=titles[view]||'Журнал';}
-$('#nav').addEventListener('click',e=>{const b=e.target.closest('[data-view]');if(b)go(b.dataset.view)});document.addEventListener('click',e=>{const g=e.target.closest('[data-goto]');if(g)go(g.dataset.goto);const a=e.target.closest('[data-att]');if(a){$('#attendanceLesson').value=a.dataset.att;go('attendance');renderAttendance()}const ed=e.target.closest('[data-editlesson]');if(ed)lessonModal(ed.dataset.editlesson);const dl=e.target.closest('[data-dellesson]');if(dl&&confirm('Удалить занятие и его отметки посещаемости?')){data.lessons=data.lessons.filter(l=>l.id!==dl.dataset.dellesson);delete data.attendance[dl.dataset.dellesson];save()}const ec=e.target.closest('[data-editchild]');if(ec)childModal(ec.dataset.editchild);const dc=e.target.closest('[data-delchild]');if(dc&&confirm('Удалить воспитанника и связанные отметки?')){const id=dc.dataset.delchild;data.children=data.children.filter(c=>c.id!==id);Object.values(data.attendance).forEach(o=>delete o[id]);save()}});
-['lessonGroupFilter','lessonDateFilter','lessonStatusFilter'].forEach(id=>$('#'+id).addEventListener('change',renderLessons));['childGroupFilter','childSearch'].forEach(id=>$('#'+id).addEventListener('input',renderChildren));$('#attendanceLesson').addEventListener('change',renderAttendance);
-function toast(msg){$('#toastRoot').innerHTML='<div class="toast">'+esc(msg)+'</div>';setTimeout(()=>$('#toastRoot').innerHTML='',2600)}
-function openModal(title,html,onSave){$('#modalRoot').innerHTML='<div class="modal-backdrop"><form class="modal" id="modalForm"><div class="modal-head"><h2>'+title+'</h2><button type="button" class="btn small" id="closeModal">Закрыть</button></div>'+html+'<div class="modal-foot"><button type="button" class="btn" id="cancelModal">Отмена</button><button class="btn primary" type="submit">Сохранить</button></div></form></div>';const close=()=>$('#modalRoot').innerHTML='';$('#closeModal').onclick=close;$('#cancelModal').onclick=close;$('#modalRoot').querySelector('.modal-backdrop').addEventListener('click',e=>{if(e.target.classList.contains('modal-backdrop'))close()});$('#modalForm').onsubmit=e=>{e.preventDefault();if(onSave(new FormData(e.target))!==false){close();save()}}}
-function lessonModal(id){const old=data.lessons.find(l=>l.id===id)||{id:'l'+Date.now(),date:dateToday,groupId:data.groups[0]?.id||'',title:'',teacher:'',planned:20,actual:0,status:'planned'};openModal(id?'Изменить занятие':'Новое занятие','<div class="form-grid"><div class="field"><label>Дата</label><input name="date" type="date" required value="'+esc(old.date)+'"></div><div class="field"><label>Группа</label><select name="groupId" required>'+data.groups.map(g=>'<option value="'+g.id+'" '+(old.groupId===g.id?'selected':'')+'>'+esc(g.name)+'</option>').join('')+'</select></div><div class="field wide"><label>Название занятия</label><input name="title" required maxlength="120" value="'+esc(old.title)+'" placeholder="Например, развитие речи"></div><div class="field"><label>Педагог</label><input name="teacher" maxlength="100" value="'+esc(old.teacher)+'" placeholder="Имя педагога"></div><div class="field"><label>План, минут</label><input name="planned" type="number" min="1" max="240" required value="'+old.planned+'"></div><div class="field"><label>Фактически, минут</label><input name="actual" type="number" min="0" max="240" required value="'+old.actual+'"></div><div class="field"><label>Статус</label><select name="status"><option value="planned" '+(old.status==='planned'?'selected':'')+'>Запланировано</option><option value="done" '+(old.status==='done'?'selected':'')+'>Проведено</option><option value="cancelled" '+(old.status==='cancelled'?'selected':'')+'>Отменено</option></select></div></div>',f=>{const v=Object.fromEntries(f.entries());v.planned=Number(v.planned);v.actual=Number(v.actual);if(id)Object.assign(old,v);else data.lessons.push({...v,id:old.id});return true})}
-function childModal(id){const old=data.children.find(c=>c.id===id)||{id:'c'+Date.now(),name:'',groupId:data.groups[0]?.id||''};openModal(id?'Изменить воспитанника':'Добавить воспитанника','<div class="form-grid"><div class="field wide"><label>ФИО</label><input name="name" required maxlength="160" value="'+esc(old.name)+'" placeholder="Фамилия Имя Отчество"></div><div class="field wide"><label>Группа</label><select name="groupId" required>'+data.groups.map(g=>'<option value="'+g.id+'" '+(old.groupId===g.id?'selected':'')+'>'+esc(g.name)+'</option>').join('')+'</select></div></div>',f=>{const v=Object.fromEntries(f.entries());if(id)Object.assign(old,v);else data.children.push({...v,id:old.id});return true})}
-$('#quickAdd').onclick=$('#addLesson').onclick=()=>lessonModal();$('#addChild').onclick=()=>childModal();
-$('#attendanceEditor').addEventListener('change',e=>{if(e.target.matches('[data-mark]')){const l=$('#attendanceLesson').value;if(l){data.attendance[l]=data.attendance[l]||{};if(e.target.value)data.attendance[l][e.target.dataset.mark]=e.target.value;else delete data.attendance[l][e.target.dataset.mark]}}});
-$('#attendanceEditor').addEventListener('click',e=>{const l=$('#attendanceLesson').value;if(e.target.id==='saveAttendance')save();if(e.target.id==='markAllPresent'&&l){data.attendance[l]=data.attendance[l]||{};const lesson=data.lessons.find(x=>x.id===l);data.children.filter(c=>c.groupId===lesson.groupId).forEach(c=>data.attendance[l][c.id]='present');save()}});
-function reportData(){const from=$('#reportFrom').value,to=$('#reportTo').value,group=$('#reportGroup').value,type=$('#reportType').value;const lessons=data.lessons.filter(l=>(!from||l.date>=from)&&(!to||l.date<=to)&&(!group||l.groupId===group));if(type==='lessons')return [['Дата','Группа','Занятие','Педагог','План (мин)','Факт (мин)','Статус'],...lessons.map(l=>[l.date,groupName(l.groupId),l.title,l.teacher,l.planned,l.actual,statusLabel(l.status)])];if(type==='attendance'){const rows=[['Дата','Группа','Занятие','ФИО','Посещаемость']];lessons.forEach(l=>data.children.filter(c=>c.groupId===l.groupId).forEach(c=>rows.push([l.date,groupName(l.groupId),l.title,c.name,({present:'Присутствовал',absent:'Отсутствовал'})[data.attendance[l.id]?.[c.id]||'']||'Не отмечено'])));return rows}const rows=[['Группа','Всего занятий','Проведено','Отменено','Отметок посещаемости','Присутствовал','Посещаемость (%)']];data.groups.filter(g=>!group||g.id===group).forEach(g=>{const ls=lessons.filter(l=>l.groupId===g.id),ids=data.children.filter(c=>c.groupId===g.id).map(c=>c.id);let all=0,yes=0;ls.forEach(l=>ids.forEach(id=>{const v=data.attendance[l.id]?.[id];if(v){all++;if(v==='present')yes++}}));rows.push([g.name,ls.length,ls.filter(l=>l.status==='done').length,ls.filter(l=>l.status==='cancelled').length,all,yes,all?Math.round(yes/all*100):''])});return rows}
-function renderReportPreviewIfVisible(){if(!$('#view-reports').classList.contains('hidden')&&$('#reportPreview').dataset.visible==='1')showReport()}
-function showReport(){const rows=reportData();$('#reportPreview').dataset.visible='1';$('#reportPreview').innerHTML=table(rows[0].map(esc),rows.slice(1).slice(0,30).map(r=>'<tr>'+r.map(v=>'<td>'+esc(v)+'</td>').join('')+'</tr>'), 'Нет данных для отчёта')+(rows.length>31?'<p class="hint">Показаны первые 30 строк из '+(rows.length-1)+'. Экспорт включает все строки.</p>':'')}
-$('#previewReport').onclick=showReport;$('#exportReport').onclick=()=>{const rows=reportData();const csv='\ufeff'+rows.map(row=>row.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(';')).join('\r\n');const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='kindergarten-report-'+dateToday+'.csv';a.click();URL.revokeObjectURL(url);toast('Отчёт выгружен. CSV открывается в Excel.')};
-$('#reportFrom').value=iso(new Date(today.getFullYear(),today.getMonth(),1));$('#reportTo').value=dateToday;
-render();go('overview');
-})();
-</script>
+
+<div id="screen-setup" class="center-screen hidden">
+  <form class="card auth-card wide" id="setupForm" autocomplete="off">
+    <h1 id="setupTitle">Первоначальная настройка</h1>
+    <p class="hint" id="setupHint">Выполняется один раз. Нужен ключ доступа GitHub (токен) с правом записи в оба репозитория — сайта и данных.</p>
+    <div class="field"><label for="setupRepo">Приватный репозиторий с данными</label><input id="setupRepo" required spellcheck="false"></div>
+    <div class="field"><label for="setupToken">Ключ доступа GitHub (токен)</label><input id="setupToken" type="password" required spellcheck="false" placeholder="github_pat_…"></div>
+    <div class="field" id="setupNameField"><label for="setupName">Ваше имя (как будет в журнале)</label><input id="setupName" placeholder="Например, Заведующая Иванова И.И."></div>
+    <div class="field"><label for="setupLogin">Логин заведующей</label><input id="setupLogin" required autocapitalize="none" spellcheck="false" placeholder="например, admin"></div>
+    <div class="field"><label for="setupPass">Новый пароль (не короче 10 символов)</label><input id="setupPass" type="password" required minlength="10" autocomplete="new-password"></div>
+    <div class="field"><label for="setupPass2">Пароль ещё раз</label><input id="setupPass2" type="password" required minlength="10" autocomplete="new-password"></div>
+    <div class="form-error" id="setupError"></div>
+    <button class="btn primary block" type="submit" id="setupBtn">Сохранить и войти</button>
+    <button class="link-btn" type="button" id="setupBack">← Ко входу</button>
+  </form>
+</div>
+
+<div id="screen-app" class="hidden">
+  <header class="topbar">
+    <div class="topbar-row">
+      <div class="brand"><span class="brand-mark">✿</span><strong>Журнал детского сада</strong></div>
+      <button class="user-btn" id="userBtn" type="button"></button>
+    </div>
+    <nav class="tabs" id="tabs"></nav>
+  </header>
+  <main class="main" id="view"></main>
+</div>
+
+<div id="modalRoot"></div>
+<div id="toastRoot" aria-live="polite"></div>
+<div id="busy" class="busy hidden"><div class="busy-box"><div class="spinner"></div><span id="busyText">Сохраняю…</span></div></div>
+
+<script src="app.js"></script>
 </body>
 </html>
